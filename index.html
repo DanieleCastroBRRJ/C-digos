@@ -34,13 +34,15 @@ Esse é o código JavaScript dessa página.
       cpf: "012.345.678-90",
       password: "12345",
       address: "Rua do Siri Molhado, 22",
+      photo: 'https://randomuser.me/api/portraits/lego/6.jpg',
+
       
       //Métodos do objeto "user".
       login: function () {
 
       //Recebe o email do prompt e armazena.
         var userEmail = prompt("Digite seu email")
-      //Se o usuário não falou nada...
+      //Se o usuário não digitou nada...
         if(userEmail == "" || userEmail == null) {
           alert("Ooops! Você não informou um email válido")
 
@@ -56,15 +58,27 @@ Esse é o código JavaScript dessa página.
       if (userPass == "" || userPass == null) {
           alert("Ooooops! Você não informou a senha")
       
-      //EncerrA a função retornando false.
+      //Encerra a função retornando false.
       return false
-    }
-       
-      },
-      firtName: function (name) {
-        alert(name.split(" ")[0])
-      }
-    }
+    } else if (userPass != user.password) {
+                    alert('Oooops! Senha incorreta...')
+                    return false
+                }
+
+                document.write('<img src="' + user.photo + '"> Olá ' + user.name + '!')
+                localStorage.userdata = JSON.stringify({
+                    name: user.name,
+                    email: user.email
+                })
+                let parts = user.birth.split('-')
+                let bdate = parts[2] + '/' + parts[1] + '/' + parts[0]
+                document.write(' Nascido em ' + bdate)
+
+            },
+            firstName: function () {
+                alert(this.name.split(' ')[0])
+            }
+        }
 
       //Chama a função de login.
     //user.login()
